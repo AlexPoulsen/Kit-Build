@@ -13,3 +13,5 @@ If .NET Runtime is not installed (necessary for Scoop), it will download it and 
 If Stack isn't installed, it will install Stack and try again.
 
 Adds the toolchain path to startup files for Bash, Csh, Fish, Rc, Sh (requires running with sudo), Tcsh, Zsh. Shuoldn't have issues if any aren't installed. When the code for this in another script, Bash called from Python did not echo the variable, or messed up in some other way, and reports a failure. It was however in the startup scripts and could be `echo`'d successfully. If this occurs, try testing it manually to see if it has a path for `KIT_TOOLCHAIN_PATH`, if it does, `kitc` should work fine. If someone knows what is going on with this, please make a PR or issue so I can fix it.
+
+If someone on Windows (or on any Linux Distro) wants to test it out, that would be awesome. I have a Mac with too little SSD space to boot up a VM to test any other platforms, so I may miss bugs on Windows or some Linux Distros.
