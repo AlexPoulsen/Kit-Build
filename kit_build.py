@@ -183,14 +183,20 @@ with cd("kit"):
 		if prompt("Use new scoop install?", "y", True):
 			# new build process with scoop
 			try:
-				subprocess.run("scoop", "install", "'https://raw.githubusercontent.com/kitlang/kit/dev/.packages/scoop/kitlang-prerelease.json'")
+				subprocess.run(["scoop", "install", "'https://raw.githubusercontent.com/kitlang/kit/dev/.packages/scoop/kitlang-prerelease.json'"])
 			except:
 				this_path = os.path.dirname("\\".join(os.path.realpath(__file__).split("\\")[:-1]))
-				urllib.request.urlretrieve("https://get.haskellstack.org/stable/windows-i386.zip", this_path + "\dotnet_4_7_2.exe")
-				dotnet_installer = this_path + "\dotnet_4_7_2.exe"
-				subprocess.call(dotnet_installer)
-				subprocess.call("Set-ExecutionPolicy", "RemoteSigned", "-scope", "CurrentUser")
-				subprocess.call(["C:\WINDOWS\system32\WindowsPowerShell\\v1.0\powershell.exe", "iex (new-object net.webclient).downloadstring('https://get.scoop.sh')"])
+				try:
+					subprocess.call(["Set-ExecutionPolicy", "RemoteSigned", "-scope", "CurrentUser"])
+					subprocess.call(["C:\WINDOWS\system32\WindowsPowerShell\\v1.0\powershell.exe", "iex (new-object net.webclient).downloadstring('https://get.scoop.sh')"])
+					subprocess.run(["scoop", "install", "'https://raw.githubusercontent.com/kitlang/kit/dev/.packages/scoop/kitlang-prerelease.json'"])
+				except:
+					urllib.request.urlretrieve("https://download.microsoft.com/download/0/5/C/05C1EC0E-D5EE-463B-BFE3-9311376A6809/NDP472-KB4054531-Web.exe", this_path + "\dotnet_4_7_2.exe")
+					dotnet_installer = this_path + "\dotnet_4_7_2.exe"
+					subprocess.call(dotnet_installer)
+					subprocess.call(["Set-ExecutionPolicy", "RemoteSigned", "-scope", "CurrentUser"])
+					subprocess.call(["C:\WINDOWS\system32\WindowsPowerShell\\v1.0\powershell.exe", "iex (new-object net.webclient).downloadstring('https://get.scoop.sh')"])
+					subprocess.run(["scoop", "install", "'https://raw.githubusercontent.com/kitlang/kit/dev/.packages/scoop/kitlang-prerelease.json'"])
 			if prompt("Run tests?", "n", True):
 				notify("I don't know how to do this for scoop installs yet.", BOLD + KITFAIL)
 		else:
