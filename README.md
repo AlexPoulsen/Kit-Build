@@ -17,6 +17,9 @@ Adds the toolchain path to startup files for Bash, Csh, Fish, Rc, Sh (requires r
 If someone on Windows (or on any Linux Distro) wants to test it out, that would be awesome. I have a Mac with too little SSD space to boot up a VM to test any other platforms, so I may miss bugs on Windows or some Linux Distros.
 
 Download and run in one line on fish on unixlikes:
+
 `curl https://raw.githubusercontent.com/AlexPoulsen/Kit-Build/master/kit_build.py --create-dirs -sLo ~/kit_build_from_github.py; and python3 kit_build_from_github.py; and rm kit_build_from_github.py`
+
 Same for bash and most other shells:
+
 `curl https://raw.githubusercontent.com/AlexPoulsen/Kit-Build/master/kit_build.py --create-dirs -sLo ~/kit_build_from_github.py && python3 kit_build_from_github.py && rm kit_build_from_github.py`
