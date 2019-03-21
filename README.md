@@ -18,8 +18,8 @@ If someone on Windows (or on any Linux Distro) wants to test it out, that would 
 
 Download and run in one line on fish on unixlikes:
 
-`curl https://raw.githubusercontent.com/AlexPoulsen/Kit-Build/master/kit_build.py --create-dirs -sLo ~/kit_build_from_github.py; and python3 kit_build_from_github.py; and rm kit_build_from_github.py`
+`cd ~; and curl https://raw.githubusercontent.com/AlexPoulsen/Kit-Build/master/kit_build.py --create-dirs -sLo ~/kit_build_from_github.py; and python3 kit_build_from_github.py; and rm kit_build_from_github.py`
 
 Same for bash and most other shells:
 
-`curl https://raw.githubusercontent.com/AlexPoulsen/Kit-Build/master/kit_build.py --create-dirs -sLo ~/kit_build_from_github.py && python3 kit_build_from_github.py && rm kit_build_from_github.py`
+`cd ~ && curl https://raw.githubusercontent.com/AlexPoulsen/Kit-Build/master/kit_build.py --create-dirs -sLo ~/kit_build_from_github.py && python3 kit_build_from_github.py && rm kit_build_from_github.py`
