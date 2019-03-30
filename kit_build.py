@@ -244,6 +244,7 @@ with cd("kit"):
 								data["contributes"]["configuration"]["properties"]["code-runner.executorMap"]["default"]["kit"] = "kitc --run"
 								with open("package.json", "w") as write_file:
 									json.dump(data, write_file)
+			notify("Please restart Visual Studio Code", KITYELLOW)
 
 	else:
 		try:
@@ -316,3 +317,4 @@ with cd("kit"):
 								data["contributes"]["configuration"]["properties"]["code-runner.executorMap"]["default"]["kit"] = "kitc --run"
 								with open("package.json", "w") as write_file:
 									json.dump(data, write_file)
+			notify("Please restart Visual Studio Code", KITYELLOW)
