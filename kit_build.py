@@ -223,6 +223,7 @@ with cd("kit"):
 			if prompt("Run " + KIT2 + "tests?" + KIT3, "n", True):
 				subprocess.run(["stack", "test"])
 			subprocess.run(["stack", "install"])
+		shutil.rmtree(localbin + "\std")
 		shutil.copytree(os.path.abspath("std"), os.path.abspath(localbin + "\std"))
 		if prompt("Add Visual Studio Code extension?", "y", True):
 			with cd("utils"):
