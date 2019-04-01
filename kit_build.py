@@ -9,10 +9,7 @@ import sys
 import codecs
 import typing
 import pip
-if hasattr(pip, "main"):
-	pip.main(["install", "colorama"])
-else:
-	pip._internal.main(["install", "colorama"])
+pip.main(["install", "colorama"])
 import colorama
 colorama.init()
 system = platform.system()
