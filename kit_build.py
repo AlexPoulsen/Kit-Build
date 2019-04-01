@@ -8,6 +8,14 @@ import json
 import sys
 import codecs
 import typing
+import pip
+if hasattr(pip, "main"):
+	pip.main(["install", "colorama"])
+else:
+	pip._internal.main(["install", "colorama"])
+import colorama
+colorama.init()
+system = platform.system()
 
 
 def path_add(new_path: str):
@@ -36,7 +44,10 @@ GREEN = "\033[0;32m"
 RESET = "\033[0;0m"
 BOLD = "\033[;1m"
 REVERSE = "\033[;7m"
-colors_supported = codecs.decode(subprocess.run(["tput", "colors"], capture_output=True).stdout, "ascii").replace("\n", "")
+if not (system.lower() in ["windows", "win", "win32", "win64"]):
+	colors_supported = codecs.decode(subprocess.run(["tput", "colors"], capture_output=True).stdout, "ascii").replace("\n", "")
+else:
+	colors_supported = "256"
 if colors_supported == "256":
 	KIT1 = "\033[38;5;79m"
 	KIT2 = "\033[38;5;80m"
@@ -176,7 +187,6 @@ with cd("kit"):
 		subprocess.run(["git", "fetch", "origin"])
 		subprocess.run(["git", "checkout", "dev"])
 	subprocess.run(["git", "pull"])
-	system = platform.system()
 	print("Running on " + system)
 	if system.lower() in ["windows", "win32", "win", "win64"]:
 		localbin = os.path.abspath(os.getenv('APPDATA') + "\local\\bin")
