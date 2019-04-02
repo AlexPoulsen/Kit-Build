@@ -8,9 +8,13 @@ import json
 import sys
 import codecs
 import typing
-import pip
-pip.main(["install", "colorama"])
-import colorama
+
+try:
+	import colorama
+except ImportError:
+	subprocess.run(["pip", "install", "colorama"])
+	import colorama
+
 colorama.init()
 system = platform.system()
 
@@ -59,6 +63,7 @@ else:
 	KITSUCCESS = "\033[1;36m"
 	KITFAIL = "\033[1;31m"
 	KITYELLOW = "\033[0;93m"
+
 
 def reset_format():
 	sys.stdout.write(RESET)
@@ -113,7 +118,7 @@ def notify(text, color):
 
 
 def set_global_env_var(name, what, message=""):
-	startup_files = {"csh":  os.environ["HOME"] + "/.cshrc",  # --------------- # csh
+	startup_files = {"csh":   os.environ["HOME"] + "/.cshrc",  # --------------- # csh
 					"tcsh":  os.environ["HOME"] + "/.tcshrc",  # -------------- # tcsh
 					"sh":    "/etc/profile",  # ------------------------------- # sh
 					"bash":  os.environ["HOME"] + "/.bash_profile",  # -------- # bash
@@ -177,7 +182,6 @@ def get_global_env_var(name, what, which: typing.Union[str, bool] = True):
 
 if not (os.path.exists("kit") and os.path.isdir("kit")):
 	subprocess.run(["git", "clone", "https://github.com/kitlang/kit.git"])
-
 
 with cd("kit"):
 	if prompt("Use dev branch?", "y", True):
