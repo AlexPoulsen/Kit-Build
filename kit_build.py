@@ -224,7 +224,7 @@ with cd("kit"):
 				zipfile.ZipFile(location, "r").extractall()
 				os.remove(location)
 			subprocess.run(["stack", "build"])
-			if prompt("Run " + KIT2 + "tests?" + KIT3, "n", True):
+			if prompt("Run tests?", "n", True):
 				subprocess.run(["stack", "test"])
 			subprocess.run(["stack", "install"])
 		shutil.rmtree(localbin + "\std")
