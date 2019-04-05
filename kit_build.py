@@ -242,7 +242,8 @@ with cd("kit"):
 					files_in_here = [f for f in os.listdir(this_path) if os.path.isfile(os.path.join(this_path, f))]
 					for f in files_in_here:
 						if f.split(".")[-1] == "vsix":
-							subprocess.run(["code", "--install-extension", "--force", os.path.abspath(f)])
+							subprocess.run(["code", "--uninstall-extension", "kitlang.kitlang"])
+							subprocess.run(["code", "--install-extension", os.path.abspath(f)])
 							os.remove(f)
 			if prompt("Modify Code Runner extension?", "y", True):
 				with cd(os.path.abspath(os.environ["USERPROFILE"] + "\.vscode\extensions")):
