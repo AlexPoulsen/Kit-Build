@@ -255,6 +255,7 @@ with cd("kit"):
 								with open("package.json", "r") as read_file:
 									data = json.load(read_file)
 								data["contributes"]["configuration"]["properties"]["code-runner.executorMap"]["default"]["kit"] = "kitc --run"
+								data["contributes"]["configuration"]["properties"]["code-runner.executorMapByFileExtension"]["default"][".kit"] = "kitc --run"
 								with open("package.json", "w") as write_file:
 									json.dump(data, write_file)
 			notify("Please restart Visual Studio Code", KITYELLOW)
@@ -328,6 +329,7 @@ with cd("kit"):
 								with open("package.json", "r") as read_file:
 									data = json.load(read_file)
 								data["contributes"]["configuration"]["properties"]["code-runner.executorMap"]["default"]["kit"] = "kitc --run"
+								data["contributes"]["configuration"]["properties"]["code-runner.executorMapByFileExtension"]["default"][".kit"] = "kitc --run"
 								with open("package.json", "w") as write_file:
 									json.dump(data, write_file)
 			notify("Please restart Visual Studio Code", KITYELLOW)
