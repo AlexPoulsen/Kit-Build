@@ -227,7 +227,10 @@ with cd("kit"):
 			if prompt("Run tests?", "n", True):
 				subprocess.run(["stack", "test"])
 			subprocess.run(["stack", "install"])
-		shutil.rmtree(localbin + "\std")
+		try:
+			shutil.rmtree(localbin + "\std")
+		except FileNotFoundError:
+			pass
 		shutil.copytree(os.path.abspath("std"), os.path.abspath(localbin + "\std"))
 		if prompt("Add Visual Studio Code extension?", "y", True):
 			with cd("utils"):
@@ -291,7 +294,10 @@ with cd("kit"):
 				os.remove(os.path.abspath(os.environ["HOME"] + "/.local/bin/kitc"))
 				if not os.path.exists(os.path.abspath("/usr/local/lib/kit/")):
 					os.makedirs(os.path.abspath("/usr/local/lib/kit/"))
-				shutil.rmtree(os.path.abspath("/usr/local/lib/kit/"))
+				try:
+					shutil.rmtree(os.path.abspath("/usr/local/lib/kit/"))
+				except FileNotFoundError:
+					pass
 				shutil.copytree(os.path.abspath("std"), os.path.abspath("/usr/local/lib/kit/"))
 			else:
 				# path_add(os.path.abspath("/usr/lib/"))
@@ -299,7 +305,10 @@ with cd("kit"):
 				os.remove(os.path.abspath(os.environ["HOME"] + "/.local/bin/kitc"))
 				if not os.path.exists(os.path.abspath("/usr/lib/kit/")):
 					os.makedirs(os.path.abspath("/usr/lib/kit/"))
-				shutil.rmtree(os.path.abspath("/usr/lib/kit/"))
+				try:
+					shutil.rmtree(os.path.abspath("/usr/lib/kit/"))
+				except FileNotFoundError:
+					pass
 				shutil.copytree(os.path.abspath("std"), os.path.abspath("/usr/lib/kit/"))
 		except FileExistsError:
 			pass
@@ -333,3 +342,5 @@ with cd("kit"):
 								with open("package.json", "w") as write_file:
 									json.dump(data, write_file)
 			notify("Please restart Visual Studio Code", KITYELLOW)
+
+colorama.deinit()
